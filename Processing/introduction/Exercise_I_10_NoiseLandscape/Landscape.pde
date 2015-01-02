@@ -41,7 +41,7 @@ class Landscape {
   // Render landscape as grid of quads
   void render() {
     // Every cell is an individual quad
-    // (could use quad_strip here, but produces funny results, investigate this)
+    // (could use quad_strip here, but produces funny results, investigate this) 
     for (int x = 0; x < z.length-1; x++)
     {
       for (int y = 0; y < z[x].length-1; y++)
@@ -52,12 +52,18 @@ class Landscape {
         stroke(0);
         fill(100, 100);
         pushMatrix();
-        beginShape(QUADS);
+        beginShape(QUAD_STRIP);
         translate(x*scl-w/2, y*scl-h/2, 0);
-        vertex(0, 0, z[x][y]);
-        vertex(scl, 0, z[x+1][y]);
-        vertex(scl, scl, z[x+1][y+1]);
+        //vertex(0, 0, z[x][y]);
+        //vertex(scl, 0, z[x+1][y]);
+        //vertex(scl, scl, z[x+1][y+1]);
+        //vertex(0, scl, z[x][y+1]);
+        
         vertex(0, scl, z[x][y+1]);
+        vertex(0, 0, z[x][y]);
+        vertex(scl, scl, z[x+1][y+1]);
+        vertex(scl, 0, z[x+1][y]);
+        
         endShape();
         popMatrix();
       }
